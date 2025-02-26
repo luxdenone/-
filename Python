@@ -1,0 +1,30 @@
+# Импортируем необходимые библиотеки
+from flask import Flask, render_template, request, redirect
+
+# Создаем экземпляр приложения
+app = Flask(__name__)
+
+# Список для хранения отзывов
+reviews = []
+
+# Главная страница
+@app.route('/')
+def home():
+    return render_template('index.html', reviews=reviews)
+
+# Обработка отправленной формы
+@app.route('/', methods=['POST'])
+def submit_review():
+    # Получаем данные из формы
+    name = request.form['name']
+    review = request.form['review']
+    
+    # Добавляем отзыв в список
+    reviews.append({'name': name, 'review': review})
+    
+    # Возвращаем пользователя на главную страницу
+    return redirect('/')
+
+# Запускаем приложение
+if __name__ == '__main__':
+    app.run(debug=True)
