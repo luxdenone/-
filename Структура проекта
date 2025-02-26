@@ -1,0 +1,6 @@
+review_app/
+├── app.py
+├── templates/
+│   └── index.html
+└── static/
+    └── styles.css
